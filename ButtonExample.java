@@ -22,6 +22,10 @@ public class ButtonExample
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         JButton startButton = new JButton("Start");
+        startButton.setFont(new Font("Arial", Font.BOLD, 20));  // Schriftart ändern
+        startButton.setBackground(Color.CYAN);  // Hintergrundfarbe ändern
+        startButton.setForeground(Color.RED);
+        
         JButton stopButton = new JButton("Stop");
         
         startButton.addActionListener(new ActionListener() {
