@@ -22,32 +22,33 @@ public class ButtonExample
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         JButton startButton = new JButton("Start");
-        startButton.setFont(new Font("Arial", Font.BOLD, 20));  // Schriftart ändern
-        startButton.setBackground(Color.CYAN);  // Hintergrundfarbe ändern
-        startButton.setForeground(Color.RED);
-        
         JButton stopButton = new JButton("Stop");
+        
+        ImageIcon icon = new ImageIcon("path_to_your_image.jpg");  
+        JLabel imageLabel = new JLabel(icon);
+        
+        JLabel label = new JLabel("Willkommen! Klicke auf einen der Buttons.");
         
         startButton.addActionListener(new ActionListener() {
             @Override 
             public void actionPerformed(ActionEvent e){
-                System.out.println("Start Button clicked");
+                label.setText("Start Button wurde geklickt!");
             }
         });
         
         stopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Stop Button clicked!");
+                System.out.println("Stop Button wurde geklickt! Das Fenster wird geschlossen");
+                frame.dispose();
             }
         });
         
-        //frame.setLayout(new FlowLayout());
-        
-        frame.add(startButton);
-        frame.add(stopButton);  
-        
         frame.setLayout(new FlowLayout());
+        
+        frame.add(label);
+        frame.add(startButton);
+        frame.add(stopButton);
         
         frame.setVisible(true);
 }}
