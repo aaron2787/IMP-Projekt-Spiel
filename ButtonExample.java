@@ -17,8 +17,6 @@ public class ButtonExample
         
         JFrame frame = new JFrame("Button Example");
         
-        frame.setSize(400, 200);
-        
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         JButton startButton = new JButton("Start");
@@ -26,7 +24,7 @@ public class ButtonExample
         
         ImageIcon icon = new ImageIcon("Acer_Wallpaper_01_3840x2400.jpg");
         JLabel imageLabel = new JLabel(icon);
-        ImageIcon icon2 = new ImageIcon("dummy.jpg");
+        ImageIcon icon2 = new ImageIcon("dummy.png");
         JLabel dummy = new JLabel(icon2);
         
         JLabel label = new JLabel("Willkommen! Klicke auf einen der Buttons.");
@@ -47,7 +45,7 @@ public class ButtonExample
             }
         });
         
-        imageLabel.addMouseListener(new MouseAdapter(){
+        dummy.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
                 System.out.println("Bild gecklickt!");
@@ -59,6 +57,7 @@ public class ButtonExample
         frame.add(stopButton);
         
         frame.setLayout(new FlowLayout());
+        Container contentPane = frame.getContentPane();
         
         frame.setVisible(true);
 }}
