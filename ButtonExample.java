@@ -23,11 +23,14 @@ public class ButtonExample
         
         JButton startButton = new JButton("Start");
         JButton stopButton = new JButton("Stop");
+        
         ImageIcon icon = new ImageIcon("Acer_Wallpaper_01_3840x2400.jpg");
         JLabel imageLabel = new JLabel(icon);
+        ImageIcon icon2 = new ImageIcon("dummy.jpg");
+        JLabel dummy = new JLabel(icon2);
         
-
         JLabel label = new JLabel("Willkommen! Klicke auf einen der Buttons.");
+        
         
         startButton.addActionListener(new ActionListener() {
             @Override 
@@ -50,13 +53,12 @@ public class ButtonExample
                 System.out.println("Bild gecklickt!");
             }
         });
-        
-        frame.setLayout(new FlowLayout());
-        
         frame.add(label);
-        frame.add(imageLabel);
+        frame.add(dummy);
         frame.add(startButton);
         frame.add(stopButton);
+        
+        frame.setLayout(new FlowLayout());
         
         frame.setVisible(true);
 }}
