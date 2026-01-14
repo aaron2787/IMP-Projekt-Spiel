@@ -23,13 +23,8 @@ public class ButtonExample
         
         JButton startButton = new JButton("Start");
         JButton stopButton = new JButton("Stop");
-        //"C:\Users\aaron\bluej\IMP-Projekt\Acer_Wallpaper_01_3840x2400.jpg"
         ImageIcon icon = new ImageIcon("Acer_Wallpaper_01_3840x2400.jpg");
         JLabel imageLabel = new JLabel(icon);
-        
-        
-        //ImageIcon icon = new ImageIcon("C:\Users\aaron\bluej\IMP-Projekt\Acer_Wallpaper_01_3840x2400.jpg");  
-        //JLabel imageLabel = new JLabel(icon);
         
 
         JLabel label = new JLabel("Willkommen! Klicke auf einen der Buttons.");
