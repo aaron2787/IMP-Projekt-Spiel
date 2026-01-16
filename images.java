@@ -5,29 +5,31 @@
  * @author (Ihr Name) 
  * @version (eine Versionsnummer oder ein Datum)
  */
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
 public class images
 {
-    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
-    private int x;
-
-    /**
-     * Konstruktor für Objekte der Klasse images
-     */
     public images()
     {
-        // Instanzvariable initialisieren
-        x = 0;
+        JFrame image = new JFrame("Images");
+        image.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        image.setSize(400, 300);
+        
+        Image originalesBild = new ImageIcon("dummy.png").getImage();
+        int neueBreite = 150;
+        int neueHoehe = 150;
+        Image skaliertesBild = originalesBild.getScaledInstance(neueBreite, neueHoehe, Image.SCALE_SMOOTH);
+        
+        ImageIcon skaliertesIcon = new ImageIcon(skaliertesBild);
+        
+        JLabel bildLabel = new JLabel(skaliertesIcon);
+        image.add(bildLabel);
+        image.setVisible(true);
+        //ImageIcon 
     }
-
-    /**
-     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
-     * 
-     * @param  y    ein Beispielparameter für eine Methode
-     * @return        die Summe aus x und y
-     */
-    public int beispielMethode(int y)
-    {
-        // tragen Sie hier den Code ein
-        return x + y;
-    }
+    
+    
 }
