@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class images
+public class images extends Funktionen
 {
     public images()
     {
@@ -29,6 +29,9 @@ public class images
         image.add(bildLabel);
         image.setVisible(true);
         //ImageIcon 
+        
+        Image scaledPicture = scaleImage("dummy.png", 100, 100);
+        
     }
     
     
