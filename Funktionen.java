@@ -21,5 +21,8 @@ public class Funktionen
         imageLabel.setBounds(xPosition, yPosition,imageWide, imageHight);
         frameToAddTo.add(imageLabel);
     }
+    public void addListenerToImage(Image imageToAddListener){
+        
+    }
 }
 
