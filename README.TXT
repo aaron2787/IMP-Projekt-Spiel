@@ -1,14 +1,6 @@
-------------------------------------------------------------------------
-Dies ist die README-Datei des Projekts. Hier sollten Sie Ihr Projekt
-beschreiben.
-Erzählen Sie dem Leser (jemand, der nichts über dieses Projekt weiss),
-alles, was er/sie wissen muss. Üblicherweise sollte der Kommentar 
-zumindest die folgenden Angaben umfassen:
-------------------------------------------------------------------------
+This is a school project for our "IMP-Class". It was created using blueJ. The project is a game, which we weren't allowed to make in VS-Code or greenfoot, so we HAD TO USE FUCKING BLUEJ. I don't know what the game is about
 
-PROJEKTBEZEICHNUNG:
-PROJEKTZWECK:
-VERSION oder DATUM:
-WIE IST DAS PROJEKT ZU STARTEN:
-AUTOR(EN):
-BENUTZERHINWEISE:
+To use it, dowload the zip-file, by clicking on "code" (top left corner) and selecting "dowload zip-file"
+Then, import the zip-file in blueJ. To start the game --- [...]
+
+Authors: Aaron, Leo, Darragh, Paul
