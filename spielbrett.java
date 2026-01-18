@@ -10,7 +10,7 @@ public class spielbrett
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
     // Definiert ein Tupel (x,y)
     
-
+    private spieler[] spieler;
     public stein[][] spielfeld;
     /**
      * Konstruktor für Objekte der Klasse spielbrett
@@ -18,7 +18,14 @@ public class spielbrett
     public spielbrett()
     {
         // Instanzvariable initialisieren
-        spielfeld = new stein[4][4];
+        this.spielfeld = new stein[4][4];
+        System.out.print("Spiel gestartet. Wie heißt Spieler 1?");
+        String name = System.console().readLine();
+        spieler s1 = new spieler(name, "w", this);
+        System.out.println("Hallo " + name + ", wie heißt dein Mitspieler?");
+        name = System.console().readLine();
+        spieler s2 = new spieler(name, "s", this);
+        this.spieler = new spieler[] {s1, s2};
     }
 
     /**
@@ -27,6 +34,18 @@ public class spielbrett
      * @param  y    ein Beispielparameter für eine Methode
      * @return        die Summe aus x und y
      */
+    private void spiel() {
+        int spIdx = 0;
+        while(spieler[0].steinAnzahl > 0 && spieler[0].steinAnzahl > 0) {
+            spieler[spIdx].zug();
+            showBoard();
+            spIdx = (spIdx+1) % 2;
+        }
+    }
+    
+    private void showBoard() {
+        
+    }
     
     public void drehen() {
         stein f = spielfeld[0][0];
