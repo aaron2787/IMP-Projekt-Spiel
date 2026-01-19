@@ -117,8 +117,21 @@ public class spielbrett
         }
         return new int[] {row,clm};
     }
-
-    boolean move(String pos, String color) {
+    private boolean moveDir(int row, int clm, int rowO, int clmO) {
+        try {
+            if(spielfeld[row+rowO][clm+clmO] != null) {
+                System.out.println("Dieses Feld ist belegt!");
+                return false;
+            }
+            spielfeld[row+rowO][clm+clmO] = spielfeld[row][clm];
+            spielfeld[row][clm] = null;
+            return true;
+        } catch(Exception ArrayIndexOutOfBoundsException) {
+            System.out.println("Du kannst die Steine nicht aus dem Feld rausverschieben!");
+            return false;
+        }        
+    }
+    public boolean move(String pos, String color) {
         int[] p = parsePos(pos);
         if (p==null) {
             return false;
@@ -138,37 +151,13 @@ public class spielbrett
             System.out.println("In welche Richtung möchtest du den Stein bewegen? (l / r / u / d / exit)");
             String dir = sc.nextLine();
             if (dir.equalsIgnoreCase("l")) {
-                if(spielfeld[row][clm-1] != null) {
-                    System.out.println("Dieses Feld ist belegt!");
-                    break;
-                }
-                spielfeld[row][clm-1] = spielfeld[row][clm];
-                spielfeld[row][clm] = null;
-                moved = true;
+                moved = moveDir(row, clm, 0, -1);
             } else if (dir.equalsIgnoreCase("r")) {
-                if(spielfeld[row][clm+1] != null) {
-                    System.out.println("Dieses Feld ist belegt!");
-                    break;
-                }
-                spielfeld[row][clm+1] = spielfeld[row][clm];
-                spielfeld[row][clm] = null;
-                moved = true;
+                moved = moveDir(row, clm, 0, 1);
             } else if (dir.equalsIgnoreCase("u")) {
-                if(spielfeld[row-1][clm] != null) {
-                    System.out.println("Dieses Feld ist belegt!");
-                    break;
-                }
-                spielfeld[row-1][clm] = spielfeld[row][clm];
-                spielfeld[row][clm] = null;
-                moved = true;
+                moved = moveDir(row, clm, -1, 0);
             } else if (dir.equalsIgnoreCase("d")) {
-                if(spielfeld[row+1][clm] != null) {
-                    System.out.println("Dieses Feld ist belegt!");
-                    break;
-                }
-                spielfeld[row+1][clm] = spielfeld[row][clm];
-                spielfeld[row][clm] = null;
-                moved = true;
+                moved = moveDir(row, clm, 1, 0);
             } else if (dir.equalsIgnoreCase("exit")){
                 return false;
             } else {
