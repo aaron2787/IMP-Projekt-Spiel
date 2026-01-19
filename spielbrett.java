@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 /**
  * Beschreiben Sie hier die Klasse spielbrett.
  * 
@@ -10,8 +10,9 @@ public class spielbrett
     // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
     // Definiert ein Tupel (x,y)
     
-    private spieler[] spieler;
+    public spieler[] spieler;
     public stein[][] spielfeld;
+    Scanner sc = new Scanner(System.in);
     /**
      * Konstruktor für Objekte der Klasse spielbrett
      */
@@ -19,13 +20,14 @@ public class spielbrett
     {
         // Instanzvariable initialisieren
         this.spielfeld = new stein[4][4];
-        System.out.print("Spiel gestartet. Wie heißt Spieler 1?");
-        String name = System.console().readLine();
+        System.out.println("Spiel gestartet. Wie heißt Spieler 1? ");
+        String name = sc.nextLine();
         spieler s1 = new spieler(name, "w", this);
-        System.out.println("Hallo " + name + ", wie heißt dein Mitspieler?");
-        name = System.console().readLine();
+        System.out.println("Hallo " + name + ", wie heißt dein Mitspieler? ");
+        name = sc.nextLine();
         spieler s2 = new spieler(name, "s", this);
         this.spieler = new spieler[] {s1, s2};
+        spiel();
     }
 
     /**
@@ -43,8 +45,22 @@ public class spielbrett
         }
     }
     
-    private void showBoard() {
-        
+    public void showBoard() {
+        System.out.println();
+        System.out.println("  A B C D");
+        String zeile;
+        for (int i = 0; i < 4; i++) {
+            zeile = "" + (i+1);
+            for (int j = 0; j < 4; j++) {
+                if (spielfeld[i][j] == null) {
+                    zeile = zeile + " .";                    
+                } else {
+                    zeile = zeile + " " + spielfeld[i][j].color;   
+                }
+            }
+            System.out.println(zeile);
+        }
+        System.out.println();
     }
     
     public void drehen() {
@@ -93,8 +109,8 @@ public class spielbrett
             System.out.println("Ungültige Eingabe, versuche es erneut!");
             return null;
         }
-        int row = Character.toUpperCase(pos.charAt(0)) - 'A';
-        int clm = pos.charAt(1) - '1';
+        int clm = Character.toUpperCase(pos.charAt(0)) - 'A';
+        int row = pos.charAt(1) - '1';
         if (row < 0 || row > 3 || clm < 0 || clm > 3) {
             System.out.println("Dieses Feld existiert nicht, versuche es erneut!");
             return null;
@@ -119,25 +135,41 @@ public class spielbrett
         }
         boolean moved = false;
         while (!moved) {
-            System.out.print("In welche Richtung möchtest du den Stein bewegen? (l / r / o / u / exit)");
-            String dir = System.console().readLine();
-            if (dir.toLowerCase() == "l") {
+            System.out.println("In welche Richtung möchtest du den Stein bewegen? (l / r / u / d / exit)");
+            String dir = sc.nextLine();
+            if (dir.equalsIgnoreCase("l")) {
+                if(spielfeld[row][clm-1] != null) {
+                    System.out.println("Dieses Feld ist belegt!");
+                    break;
+                }
                 spielfeld[row][clm-1] = spielfeld[row][clm];
                 spielfeld[row][clm] = null;
                 moved = true;
-            } else if (dir.toLowerCase() == "r") {
+            } else if (dir.equalsIgnoreCase("r")) {
+                if(spielfeld[row][clm+1] != null) {
+                    System.out.println("Dieses Feld ist belegt!");
+                    break;
+                }
                 spielfeld[row][clm+1] = spielfeld[row][clm];
                 spielfeld[row][clm] = null;
                 moved = true;
-            } else if (dir.toLowerCase() == "o") {
+            } else if (dir.equalsIgnoreCase("u")) {
+                if(spielfeld[row-1][clm] != null) {
+                    System.out.println("Dieses Feld ist belegt!");
+                    break;
+                }
                 spielfeld[row-1][clm] = spielfeld[row][clm];
                 spielfeld[row][clm] = null;
                 moved = true;
-            } else if (dir.toLowerCase() == "u") {
+            } else if (dir.equalsIgnoreCase("d")) {
+                if(spielfeld[row+1][clm] != null) {
+                    System.out.println("Dieses Feld ist belegt!");
+                    break;
+                }
                 spielfeld[row+1][clm] = spielfeld[row][clm];
                 spielfeld[row][clm] = null;
                 moved = true;
-            } else if (dir.toLowerCase() == "exit"){
+            } else if (dir.equalsIgnoreCase("exit")){
                 return false;
             } else {
                 System.out.print("Ungültige Eingabe - Versuche es erneut!");

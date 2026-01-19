@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 /**
  * Beschreiben Sie hier die Klasse spieler.
  * 
@@ -12,6 +12,7 @@ public class spieler
     public int steinAnzahl;
     spielbrett spielfeld;
     String color;
+    Scanner sc = new Scanner(System.in);
     /**
      * Konstruktor für Objekte der Klasse spieler
      */
@@ -27,22 +28,35 @@ public class spieler
     void zug() {
         System.out.println(name + " ist am Zug.");
         boolean moved = false;
+        boolean show = true;
         while (!moved) {
-            System.out.println("Möchtest du einen Stein deines Gegners bewegen? Gib seine Position ein oder schreibe 'skip'!");
-            String pos = System.console().readLine();
-            if (pos.toLowerCase() == "skip") {
+            if (spielfeld.spieler[0].steinAnzahl == 8 && spielfeld.spieler[1].steinAnzahl == 8) {
                 moved = true;
+                //show = false;
+                break;
+            }
+            System.out.println("Möchtest du einen Stein deines Gegners bewegen? Gib seine Position ein oder schreibe 'skip'!");
+            String pos = sc.nextLine();
+            //System.out.println(pos);
+            if (pos.equalsIgnoreCase("skip")) {
+                moved = true;
+                show = false;
             } else {
                 moved = spielfeld.move(pos, color);
             }
         }
+        if (show) {
+            spielfeld.showBoard();
+        }
         boolean placed = false;
         while (!placed) {
             System.out.println("Wohin möchtest du deinen Stein platzieren?");
-            String pos = System.console().readLine();
+            String pos = sc.nextLine();
             placed = spielfeld.place(pos, color);
         }
         this.steinAnzahl--;
+        spielfeld.showBoard();
+        System.out.println("Gedrehtes Spielfeld:");
         spielfeld.drehen();
     }
 }
