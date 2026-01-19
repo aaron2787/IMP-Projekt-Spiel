@@ -21,8 +21,13 @@ public class Funktionen
         imageLabel.setBounds(xPosition, yPosition,imageWide, imageHight);
         frameToAddTo.add(imageLabel);
     }
-    public void addListenerToImage(Image imageToAddListener){
-        
+    public void addClickListener(JComponent object, Runnable action){
+        object.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                action.run();
+            }
+        });
     }
 }
 
