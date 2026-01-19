@@ -14,4 +14,15 @@ public class Funktionen
         Image scaledPicture = originalPicture.getScaledInstance(wideImage, hightImage, Image.SCALE_SMOOTH);
         return scaledPicture;
     }
+    public void addImageToJFrame (Image imageToAdd, JFrame frameToAddTo, int xPosition, int yPosition, int imageWide, int imageHight){
+        frameToAddTo.setLayout(null);
+        ImageIcon icon = new ImageIcon(imageToAdd);
+        JLabel imageLabel = new JLabel(icon);
+        imageLabel.setBounds(xPosition, yPosition,imageWide, imageHight);
+        frameToAddTo.add(imageLabel);
+    }
+    public void addListenerToImage(Image imageToAddListener){
+        
+    }
 }
+
