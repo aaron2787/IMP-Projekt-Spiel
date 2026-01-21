@@ -29,5 +29,22 @@ public class Funktionen
             }
         });
     }
+    public JFrame startJFrame(String displayedName){
+        JFrame frame = new JFrame(displayedName);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1535, 1000);
+        frame.setVisible(true);
+        return frame;
+    }
+    public JFrame startJFrame(String displayedName, int width, int hight){
+        JFrame frame = new JFrame(displayedName);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(width, hight);
+        frame.setVisible(true);
+        return frame;
+    }
+    public void displayText(String textToDisplay, int xPosition, int yPosition){
+        
+    }
 }
 

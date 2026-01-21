@@ -32,7 +32,7 @@ public class images extends Funktionen
         //ImageIcon 
         */
            
-       /**
+        /**
         JFrame image = new JFrame("Images");
         image.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         image.setSize(400, 300);
@@ -49,12 +49,8 @@ public class images extends Funktionen
         image.setVisible(true);
         //ImageIcon 
         */
-        JFrame imageTest = new JFrame("Test");
-        imageTest.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        imageTest.setSize(1535, 1000);
-        
-        Image scaledPicture = scaleImage("Spielbrettsora.png", 300, 300);
-        addImageToJFrame(scaledPicture, imageTest, 30, 30, 300, 300);
-        imageTest.setVisible(true);
+        JFrame frame = startJFrame("Test");
+        Image scaledPicture = scaleImage("Spielbrettsora.png", 1024, 1530);
+        addImageToJFrame(scaledPicture, frame, 0, -50, 1024, 1530);
     }
 }
