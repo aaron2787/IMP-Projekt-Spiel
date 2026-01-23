@@ -52,5 +52,6 @@ public class images extends Funktionen
         JFrame frame = startJFrame("Test");
         Image scaledPicture = scaleImage("Spielbrettsora.png", 1024, 1530);
         addImageToJFrame(scaledPicture, frame, 0, -50, 1024, 1530);
+        displayText("Test", frame, 0, 0);
     }
 }

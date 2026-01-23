@@ -43,8 +43,9 @@ public class Funktionen
         frame.setVisible(true);
         return frame;
     }
-    public void displayText(String textToDisplay, int xPosition, int yPosition){
-        
+    public void displayText(String textToDisplay, JFrame frameToAddTo, int xPosition, int yPosition){
+        JLabel label = new JLabel(textToDisplay);
+        frameToAddTo.getContentPane().add(label);
     }
 }
 
