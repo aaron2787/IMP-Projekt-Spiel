@@ -50,8 +50,9 @@ public class images extends Funktionen
         //ImageIcon 
         */
         JFrame frame = startJFrame("Test");
-        Image scaledPicture = scaleImage("Spielbrettsora.png", 1024, 1530);
-        addImageToJFrame(scaledPicture, frame, 0, -50, 1024, 1530);
+        //Image scaledPicture = scaleImage("Hintergrund.png", 312, 312);
+        Image processedImage = processImage("Hintergrund.png");
+        addImageToJFrame(processedImage, frame, 0, 0, 312, 313);
         displayText("Test", frame, 0, 0);
     }
 }

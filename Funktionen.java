@@ -14,6 +14,10 @@ public class Funktionen
         Image scaledPicture = originalPicture.getScaledInstance(wideImage, hightImage, Image.SCALE_SMOOTH);
         return scaledPicture;
     }
+    public Image processImage(String pathImage){
+        Image originalPicture = new ImageIcon(pathImage).getImage();
+        return originalPicture;
+    }
     public void addImageToJFrame (Image imageToAdd, JFrame frameToAddTo, int xPosition, int yPosition, int imageWide, int imageHight){
         frameToAddTo.setLayout(null);
         ImageIcon icon = new ImageIcon(imageToAdd);
