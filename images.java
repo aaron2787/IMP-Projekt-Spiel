@@ -51,8 +51,10 @@ public class images extends Funktionen
         */
         JFrame frame = startJFrame("Test");
         //Image scaledPicture = scaleImage("Hintergrund.png", 312, 312);
-        Image processedImage = processImage("Hintergrund.png");
-        addImageToJFrame(processedImage, frame, 0, 0, 312, 313);
-        displayText("Test", frame, 0, 0);
+        //Image processedImage = processImage("Hintergrund.png");
+        //addImageToJFrame(processedImage, frame, 0, 0, 312, 313);
+        //displayText("Test", frame, 0, 0);
+        //addStoneWhite(0, 0, frame);
+        addStoneWhite(0, 0, frame);
     }
 }
