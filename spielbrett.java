@@ -1,50 +1,13 @@
 import java.util.Scanner;
-/**
- * Beschreiben Sie hier die Klasse spielbrett.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
-public class spielbrett
-{
-    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
-    // Definiert ein Tupel (x,y)
-    
+public class spielbrett {
     public spieler[] spieler;
     public stein[][] spielfeld;
     Scanner sc = new Scanner(System.in);
-    /**
-     * Konstruktor für Objekte der Klasse spielbrett
-     */
-    public spielbrett()
-    {
-        // Instanzvariable initialisieren
+    orbitoKnopf orbito;
+    public spielbrett() {
         this.spielfeld = new stein[4][4];
-        System.out.println("Spiel gestartet. Wie heißt Spieler 1? ");
-        String name = sc.nextLine();
-        spieler s1 = new spieler(name, "w", this);
-        System.out.println("Hallo " + name + ", wie heißt dein Mitspieler? ");
-        name = sc.nextLine();
-        spieler s2 = new spieler(name, "s", this);
-        this.spieler = new spieler[] {s1, s2};
-        spiel();
+        this.orbito = new orbitoKnopf();
     }
-
-    /**
-     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
-     * 
-     * @param  y    ein Beispielparameter für eine Methode
-     * @return        die Summe aus x und y
-     */
-    private void spiel() {
-        int spIdx = 0;
-        while(spieler[0].steinAnzahl > 0 && spieler[0].steinAnzahl > 0) {
-            spieler[spIdx].zug();
-            showBoard();
-            spIdx = (spIdx+1) % 2;
-        }
-    }
-    
     public void showBoard() {
         System.out.println();
         System.out.println("  A B C D");
@@ -61,38 +24,7 @@ public class spielbrett
             System.out.println(zeile);
         }
         System.out.println();
-    }
-    
-    public void drehen() {
-        stein f = spielfeld[0][0];
-        for (int i = 0; i < 3; i++) {
-            stein o = spielfeld[i+1][0];
-            spielfeld[i+1][0] = f;
-            f = o;
-        }
-        for (int i = 0; i < 3; i++) {
-            stein o = spielfeld[3][i+1];
-            spielfeld[3][i+1] = f;
-            f = o;
-        }
-        for (int i = 3; i > 0; i--) {
-            stein o = spielfeld[i-1][3];
-            spielfeld[i-1][3] = f;
-            f = o;
-        }
-        for (int i = 3; i > 0; i--) {
-            stein o = spielfeld[0][i-1];
-            spielfeld[0][i-1] = f;
-            f = o;
-        }
-        f = spielfeld[1][1];
-
-        spielfeld[1][1] = spielfeld[1][2];
-        spielfeld[1][2] = spielfeld[2][2];
-        spielfeld[2][2] = spielfeld[2][1];
-        spielfeld[2][1] = f;
-    }
-    
+    }    
     boolean place(String pos, String color) {
         int[] p = parsePos(pos);
         if (p==null) {
@@ -102,10 +34,9 @@ public class spielbrett
         int clm = p[1];        
         spielfeld[row][clm] = new stein(color);
         return true;
-    }
-    
+    }   
     int[] parsePos(String pos) {
-        if (pos.length()>2) {
+        if (pos.length()!=2) {
             System.out.println("Ungültige Eingabe, versuche es erneut!");
             return null;
         }
@@ -117,19 +48,20 @@ public class spielbrett
         }
         return new int[] {row,clm};
     }
-    private boolean moveDir(int row, int clm, int rowO, int clmO) {
-        try {
-            if(spielfeld[row+rowO][clm+clmO] != null) {
-                System.out.println("Dieses Feld ist belegt!");
-                return false;
-            }
-            spielfeld[row+rowO][clm+clmO] = spielfeld[row][clm];
-            spielfeld[row][clm] = null;
-            return true;
-        } catch(Exception ArrayIndexOutOfBoundsException) {
-            System.out.println("Du kannst die Steine nicht aus dem Feld rausverschieben!");
-            return false;
-        }        
+    private int[] getDirOffset(String dir) {
+        switch (dir) {
+            case "l":
+                return new int [] {0, -1};
+            case "r":
+                return new int [] {0, 1};
+            case "u":
+                return new int [] {-1, 0};
+            case "d":
+                return new int [] {1, 0};
+            default:
+                System.out.print("Ungültige Eingabe - Versuche es erneut!");
+                return null;
+        }
     }
     public boolean move(String pos, String color) {
         int[] p = parsePos(pos);
@@ -146,23 +78,26 @@ public class spielbrett
             System.out.println("Du kannst nur Figuren deines Gegners bewegen! Gib ein anderes Feld ein!");
             return false;
         }
-        boolean moved = false;
-        while (!moved) {
+        while (true) {
             System.out.println("In welche Richtung möchtest du den Stein bewegen? (l / r / u / d / exit)");
             String dir = sc.nextLine();
-            if (dir.equalsIgnoreCase("l")) {
-                moved = moveDir(row, clm, 0, -1);
-            } else if (dir.equalsIgnoreCase("r")) {
-                moved = moveDir(row, clm, 0, 1);
-            } else if (dir.equalsIgnoreCase("u")) {
-                moved = moveDir(row, clm, -1, 0);
-            } else if (dir.equalsIgnoreCase("d")) {
-                moved = moveDir(row, clm, 1, 0);
-            } else if (dir.equalsIgnoreCase("exit")){
+            if (dir == "exit") {
                 return false;
-            } else {
-                System.out.print("Ungültige Eingabe - Versuche es erneut!");
             }
+            int[] o = getDirOffset(dir);
+            int rowO = o[0];
+            int clmO = o[1];
+            try {
+                if (spielfeld[row+rowO][clm+clmO] != null) {
+                    System.out.println("Dieses Feld ist belegt!");
+                    break;
+                }
+                spielfeld[row+rowO][clm+clmO] = spielfeld[row][clm];
+                spielfeld[row][clm] = null;
+                return true;
+            } catch (Exception ArrayIndexOutOfBoundsException) {
+                System.out.println("Du kannst die Steine nicht aus dem Feld rausverschieben!");
+            }     
         }
         return true;
     }
