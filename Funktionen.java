@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.*;
 public class Funktionen
 {
-    int rows = 4, cols = 4, cellSize = 40;
+    int rows = 4, cols = 4, cellSize = 50;
 
     public Image scaleImage(String pathImage, int wideImage,int hightImage){
         Image originalPicture = new ImageIcon(pathImage).getImage();
@@ -61,18 +61,39 @@ public class Funktionen
     public void test(){
         
     }
+    public int calculate(JFrame frame){
+        int frameWidth  = frame.getWidth();
+        int frameHeight = frame.getHeight();
+        int gridStartX = (frameWidth  - rows)  / 2;
+        int gridStartY = (frameHeight - cols) / 2;
+        return gridStartX;
+        
+    }
     public void addStoneWhite(int gridX, int gridY, JFrame frame){
         Image stone = new ImageIcon("Hintergrund.png").getImage();
         Image scaledStone = stone.getScaledInstance(cellSize, cellSize, Image.SCALE_SMOOTH);
         ImageIcon icon = new ImageIcon(scaledStone);
         JLabel imageLabel = new JLabel(icon);
         
-        int pixelX = gridX * cellSize;
-        int pixelY = gridY * cellSize;
+        int frameWidth  = frame.getWidth();
+        int frameHeight = frame.getHeight();
+        int gridStartX = (frameWidth  - rows)  / 2;
+        int gridStartY = (frameHeight - cols) / 2;
+        int pixelX = gridStartX + gridX * cellSize;
+        int pixelY = gridStartY + gridX * cellSize;
 
         imageLabel.setBounds(pixelX, pixelY, cellSize, cellSize);
         frame.add(imageLabel);
         frame.repaint();
+    }
+    public void createGrid(){
+        JLabel cell = new JLabel();
+        cell.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        for (int y = 0; y < 4; y++) {
+            for (int x = 0; x < 4; x++) {
+                
+            }
+        }
     }
 }
 
