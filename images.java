@@ -54,8 +54,9 @@ public class images extends Funktionen
         //Image processedImage = processImage("Hintergrund.png");
         //addImageToJFrame(processedImage, frame, 0, 0, 312, 313);
         //displayText("Test", frame, 0, 0);
-        addStoneWhite(0, 0, frame);
-        addStoneWhite(2, 0, frame);
+        createGrid(frame);
+        addStoneWhite(1,1,frame);
+
         
     }
 }

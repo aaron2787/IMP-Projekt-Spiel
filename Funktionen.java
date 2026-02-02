@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.*;
 public class Funktionen
 {
-    int rows = 4, cols = 4, cellSize = 50;
+    int rows = 4, cols = 4, cellSize = 150;
 
     public Image scaleImage(String pathImage, int wideImage,int hightImage){
         Image originalPicture = new ImageIcon(pathImage).getImage();
@@ -77,8 +77,11 @@ public class Funktionen
         
         int frameWidth  = frame.getWidth();
         int frameHeight = frame.getHeight();
-        int gridStartX = (frameWidth  - rows)  / 2;
-        int gridStartY = (frameHeight - cols) / 2;
+        int gridWidth  = cols * cellSize;
+        int gridHeight = rows * cellSize;
+
+        int gridStartX = (frameWidth  - gridWidth)  / 2;
+        int gridStartY = (frameHeight - gridHeight) / 2;
         int pixelX = gridStartX + gridX * cellSize;
         int pixelY = gridStartY + gridX * cellSize;
 
@@ -86,14 +89,26 @@ public class Funktionen
         frame.add(imageLabel);
         frame.repaint();
     }
-    public void createGrid(){
-        JLabel cell = new JLabel();
-        cell.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+    public void createGrid(JFrame frame){
+        frame.setLayout(null);
         for (int y = 0; y < 4; y++) {
             for (int x = 0; x < 4; x++) {
-                
+                JLabel cell = new JLabel();
+                cell.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+                int frameWidth  = frame.getWidth();
+                int frameHeight = frame.getHeight();
+                int gridWidth  = cols * cellSize;
+                int gridHeight = rows * cellSize;
+
+                int gridStartX = (frameWidth  - gridWidth)  / 2;
+                int gridStartY = (frameHeight - gridHeight) / 2;
+                int pixelX = gridStartX + x * cellSize;
+                int pixelY = gridStartY + y * cellSize;
+                cell.setBounds(pixelX, pixelY, cellSize, cellSize);
+                frame.add(cell);
             }
         }
+        frame.repaint();
     }
 }
 
