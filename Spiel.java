@@ -5,8 +5,10 @@ public class Spiel
     spielbrett spielfeld;
     spieler[] spieler;
     orbitoKnopf orbito;
+    Music music;
     public Spiel()
     {
+        Music music = new Music();
         spielfeld = new spielbrett();
         System.out.println("Spiel gestartet. Wie heißt Spieler 1? ");
         String name = sc.nextLine();
@@ -15,7 +17,7 @@ public class Spiel
         name = sc.nextLine();
         spieler s2 = new spieler(name, "s",spielfeld, this);
         this.spieler = new spieler[] {s1, s2};
-        spielLoop();
+        spielLoop();       
     }
     private void spielLoop() {
         int spIdx = 0;
