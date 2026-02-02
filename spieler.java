@@ -49,7 +49,8 @@ public class spieler
         while (!placed) {
             System.out.println("Wohin möchtest du deinen Stein platzieren?");
             String pos = sc.nextLine();
-            placed = spielfeld.place(pos, color);
+            stein stein = new stein(color);
+            placed = spielfeld.place(pos, stein);
         }
         this.steinAnzahl--;
         spielfeld.showBoard();

@@ -4,7 +4,6 @@ public class Spiel
     Scanner sc = new Scanner(System.in);
     spielbrett spielfeld;
     spieler[] spieler;
-    orbitoKnopf orbito;
     public Spiel()
     {
         spielfeld = new spielbrett();

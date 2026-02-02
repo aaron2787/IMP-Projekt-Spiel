@@ -25,14 +25,14 @@ public class spielbrett {
         }
         System.out.println();
     }    
-    boolean place(String pos, String color) {
+    boolean place(String pos, stein stein) {
         int[] p = parsePos(pos);
         if (p==null) {
             return false;
         }
         int row = p[0];
         int clm = p[1];        
-        spielfeld[row][clm] = new stein(color);
+        spielfeld[row][clm] = stein;
         return true;
     }   
     int[] parsePos(String pos) {
