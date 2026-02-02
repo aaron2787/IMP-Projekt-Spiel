@@ -55,7 +55,7 @@ public class images extends Funktionen
         //addImageToJFrame(processedImage, frame, 0, 0, 312, 313);
         //displayText("Test", frame, 0, 0);
         createGrid(frame);
-        addStoneWhite(1,1,frame);
+        //addStoneWhite(1,1,frame);
 
         
     }
