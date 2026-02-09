@@ -9,10 +9,12 @@ import java.awt.*;
 import java.awt.event.*;
 public class Funktionen
 {
-    int rows = 4, cols = 4, cellSize = 50;
-
-    public Image scaleImage(String pathImage, int wideImage,int hightImage){
-        Image originalPicture = new ImageIcon(pathImage).getImage();
+    int rows = 4, cols = 4, cellSize;
+    cell[][] cells = new cell[4][4];
+    public Image scaleImage(Image originalPicture, int wideImage,int hightImage){
+        //Image originalPicture = new ImageIcon(pathImage).getImage();
+        System.out.println(wideImage);
+        System.out.println(hightImage);
         Image scaledPicture = originalPicture.getScaledInstance(wideImage, hightImage, Image.SCALE_SMOOTH);
         return scaledPicture;
     }
@@ -22,6 +24,9 @@ public class Funktionen
     }
     public void addImageToJFrame (Image imageToAdd, JFrame frameToAddTo, int xPosition, int yPosition, int imageWide, int imageHight){
         frameToAddTo.setLayout(null);
+        System.out.println(imageWide);
+        System.out.println(imageHight);
+        imageToAdd = scaleImage(imageToAdd, imageWide, imageHight);
         ImageIcon icon = new ImageIcon(imageToAdd);
         JLabel imageLabel = new JLabel(icon);
         imageLabel.setBounds(xPosition, yPosition,imageWide, imageHight);
@@ -45,9 +50,16 @@ public class Funktionen
         return frame;
     }
     public JFrame startJFrame(String displayedName, int width, int hight){
+        GraphicsDevice device =
+                GraphicsEnvironment.getLocalGraphicsEnvironment()
+                                   .getDefaultScreenDevice();
         JFrame frame = new JFrame(displayedName);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(width, hight);
+        //frame.setSize(width, hight);
+        frame.setUndecorated(true);   // kein Rahmen, keine Buttons
+
+        device.setFullScreenWindow(frame);
+
         frame.setVisible(true);
         return frame;
     }
@@ -77,8 +89,11 @@ public class Funktionen
         
         int frameWidth  = frame.getWidth();
         int frameHeight = frame.getHeight();
-        int gridStartX = (frameWidth  - rows)  / 2;
-        int gridStartY = (frameHeight - cols) / 2;
+        int gridWidth  = cols * cellSize;
+        int gridHeight = rows * cellSize;
+
+        int gridStartX = (frameWidth  - gridWidth)  / 2;
+        int gridStartY = (frameHeight - gridHeight) / 2;
         int pixelX = gridStartX + gridX * cellSize;
         int pixelY = gridStartY + gridX * cellSize;
 
@@ -86,14 +101,15 @@ public class Funktionen
         frame.add(imageLabel);
         frame.repaint();
     }
-    public void createGrid(){
-        JLabel cell = new JLabel();
-        cell.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+    public void createGrid(JFrame frame, int cellSize){
+        frame.setLayout(null);
         for (int y = 0; y < 4; y++) {
             for (int x = 0; x < 4; x++) {
-                
+                cell cell = new cell(frame, cellSize, x, y);
+                cells[x][y] = cell;
             }
         }
+        frame.repaint();
     }
 }
 

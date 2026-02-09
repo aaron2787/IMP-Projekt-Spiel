@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class spieler
 {
-    private String name;
+    String name;
     public int steinAnzahl;
     Spiel spiel;
     String color;
@@ -51,6 +51,9 @@ public class spieler
             String pos = sc.nextLine();
             stein stein = new stein(color);
             placed = spielfeld.place(pos, stein);
+            
+            //stein stein = new stein();
+            
         }
         this.steinAnzahl--;
         spielfeld.showBoard();
