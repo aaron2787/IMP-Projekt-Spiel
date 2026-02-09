@@ -83,6 +83,7 @@ public class Funktionen
     }
     public void addStoneWhite(int gridX, int gridY, JFrame frame){
         Image stone = new ImageIcon("Hintergrund.png").getImage();
+
         Image scaledStone = stone.getScaledInstance(cellSize, cellSize, Image.SCALE_SMOOTH);
         ImageIcon icon = new ImageIcon(scaledStone);
         JLabel imageLabel = new JLabel(icon);
@@ -105,6 +106,7 @@ public class Funktionen
         frame.setLayout(null);
         for (int y = 0; y < 4; y++) {
             for (int x = 0; x < 4; x++) {
+
                 cell cell = new cell(frame, cellSize, x, y);
                 cells[x][y] = cell;
             }
