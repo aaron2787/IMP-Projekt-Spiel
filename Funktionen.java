@@ -22,25 +22,26 @@ public class Funktionen
         Image originalPicture = new ImageIcon(pathImage).getImage();
         return originalPicture;
     }
-    public void addImageToJFrame (Image imageToAdd, JFrame frameToAddTo, int xPosition, int yPosition, int imageWide, int imageHight){
+    public JLabel addImageToJFrame (Image imageToAdd, JFrame frameToAddTo, int xPosition, int yPosition, int imageWide, int imageHight){
         frameToAddTo.setLayout(null);
-        System.out.println(imageWide);
-        System.out.println(imageHight);
+        //System.out.println(imageWide);
+        //System.out.println(imageHight);
         imageToAdd = scaleImage(imageToAdd, imageWide, imageHight);
         ImageIcon icon = new ImageIcon(imageToAdd);
         JLabel imageLabel = new JLabel(icon);
         imageLabel.setBounds(xPosition, yPosition,imageWide, imageHight);
         frameToAddTo.add(imageLabel);
         frameToAddTo.repaint();
+        return imageLabel;
     }
-    public void addClickListener(JComponent object, Runnable action){
-        object.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                action.run();
-            }
-        });
-    }
+    //public void addClickListener(JComponent object, Runnable action){
+      //  object.addMouseListener(new MouseAdapter(){
+        //    @Override
+          //  public void mouseClicked(MouseEvent e){
+            //    action.run();
+           // }
+       // });
+    //}
     public JFrame startJFrame(String displayedName){
         JFrame frame = new JFrame(displayedName);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,16 +51,14 @@ public class Funktionen
         return frame;
     }
     public JFrame startJFrame(String displayedName, int width, int hight){
-        GraphicsDevice device =
-                GraphicsEnvironment.getLocalGraphicsEnvironment()
-                                   .getDefaultScreenDevice();
+        GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         JFrame frame = new JFrame(displayedName);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame.setSize(width, hight);
+        
+
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setUndecorated(true);   // kein Rahmen, keine Buttons
-
-        device.setFullScreenWindow(frame);
-
         frame.setVisible(true);
         return frame;
     }
@@ -106,7 +105,6 @@ public class Funktionen
         frame.setLayout(null);
         for (int y = 0; y < 4; y++) {
             for (int x = 0; x < 4; x++) {
-
                 cell cell = new cell(frame, cellSize, x, y);
                 cells[x][y] = cell;
             }

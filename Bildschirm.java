@@ -13,7 +13,8 @@ public class Bildschirm extends Funktionen
     JFrame bildschirm; 
     int width;
     int height;
-    public Bildschirm()
+    PlayerPanel weiss, schwarz;
+    public Bildschirm(spieler[] spieler)
     {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         width  = (int) screenSize.getWidth();
@@ -24,10 +25,12 @@ public class Bildschirm extends Funktionen
         Image brett = new ImageIcon("Spielbrettsora.png").getImage();
         int widthI = brettM;
         int heightI = brettM;
-        addImageToJFrame(brett, bildschirm, (width-widthI)/2, (height-heightI)/2, widthI, heightI);
+        JLabel feld = addImageToJFrame(brett, bildschirm, (width-widthI)/2, (height-heightI)/2, widthI, heightI);
         
         double cellSize = (((double) brettM*(1.0-(136.0/745.0)))/4.0);
         //System.out.println(cellSize);
         createGrid(bildschirm, (int) cellSize);
+        this.weiss = new PlayerPanel(bildschirm, "w", width, height, 20, 20, "Spieler 1", spieler[0]);
+        this.schwarz = new PlayerPanel(bildschirm, "s", width, height,  (int) ((width-widthI)/2.0+widthI+10), 20, "Spieler 2", spieler[1]);
         }
 }
