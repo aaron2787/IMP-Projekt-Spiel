@@ -14,6 +14,7 @@ public class spieler
     spielbrett spielfeld;
     Scanner sc = new Scanner(System.in);
     boolean finishedPlacing;
+    boolean hasMoved = false;
     /**
      * Konstruktor für Objekte der Klasse spieler
      */
@@ -28,15 +29,11 @@ public class spieler
     void zug() {
         System.out.println(name + " ist am Zug."); //Ich muss noch was basteln was anzeigt wer dran ist aber ich hab gerade kb auf design
         
-        boolean moved = false;
-        boolean show = true;
-        //***
+        
         //while (!moved) {
-        if (spiel.spieler[0].steinAnzahl == 8 && spiel.spieler[1].steinAnzahl == 8) {
+        if (!(spiel.spieler[0].steinAnzahl == 8 && spiel.spieler[1].steinAnzahl == 8)) {
                 
-        } else {
-            
-        }
+        } 
             //System.out.println("Möchtest du einen Stein deines Gegners bewegen? Gib seine Position ein oder schreibe 'skip'!");
             //String pos = sc.nextLine();
             //if (pos.equalsIgnoreCase("skip")) {
@@ -47,9 +44,7 @@ public class spieler
             //}
         //}
         //*/
-        if (show) {
-            //spielfeld.showBoard();
-        }
+        
         finishedPlacing=false;
         spiel.bildschirm.startPlacing(this);   
         

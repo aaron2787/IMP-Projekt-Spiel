@@ -20,6 +20,13 @@ public class Bildschirm extends Funktionen
     int kugelIdx;
     double cellSize;
     JLabel knopfLabel;
+    int modus;
+    
+    final int MODUS_MOVE = 1;
+    final int MODUS_PLACE = 0;
+    
+    int moveX, moveY;
+    
     public Bildschirm(spieler[] spieler)
     {
         this.bildschirm = startJFrame("Orbito", width, height); 
@@ -43,7 +50,7 @@ public class Bildschirm extends Funktionen
         */
         
         
-        
+        modus = MODUS_PLACE;
         
         
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -181,11 +188,46 @@ public class Bildschirm extends Funktionen
     public void startPlacing(spieler spieler) {
     removeOrbitoKnopf();
     amZug = spieler;
+    /**
     for (cell[] row : cells) {
             for (cell cell : row) {
-                cell.enabled = !cell.occupied;
+               cell.enabled = !cell.occupied
         }
     }
+    **/
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            cell cell = cells[i][j];
+            if (!cell.occupied || (!amZug.hasMoved && !amZug.spielfeld.spielfeld[j][i].color.equals(amZug.color))) {
+                cell.enabled = true;
+            } else {
+                cell.enabled = false;
+            }
+        }
+    }
+}
+public void moveStein(int x, int y) {
+    modus = MODUS_MOVE;
+    for (cell[] row : cells) {
+                for (cell cell : row) {
+                    cell.enabled = false;
+                }
+    }
+    if (x-1 >= 0) {
+        cells[x-1][y].enabled = true;
+    }
+    if (x+1 < 4) {
+        cells[x+1][y].enabled = true;
+    }
+    if (y-1 >= 0) {
+        cells[x][y-1].enabled = true;
+    }
+    if (y+1 < 4) {
+        cells[x][y+1].enabled = true;
+    }
+    cells[x][y].enabled = true;
+    moveX = x;
+    moveY = y;
 }
 public void createGrid(JFrame frame, int cellSize){
         frame.setLayout(null);

@@ -39,10 +39,10 @@ public class spielbrett {
         
         System.out.println();
         
-        **/
+        **/}
         bildschirm.bildschirm.repaint();
         bildschirm.disableOcc(spielfeld);
-    }
+    
     }
     public void setBildschirm(Bildschirm bildschirm) {
         this.bildschirm = bildschirm;
