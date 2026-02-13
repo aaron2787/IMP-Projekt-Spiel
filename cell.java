@@ -5,11 +5,15 @@ import java.awt.event.*;
 public class cell {
 
     private JLabel image;
-    private boolean enabled = true;
+    public boolean enabled = false;
+    public boolean occupied = false;
     private boolean hovered = false;
+    private Bildschirm bildschirm;
+    int pixelX;
+    int pixelY;
 
-    public cell(JFrame frame, int cellSize, int x, int y) {
-
+    public cell(Bildschirm bildschirm, JFrame frame, int cellSize, int x, int y) {
+        this.bildschirm = bildschirm;
         image = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -44,8 +48,8 @@ public class cell {
         int gridStartX = (frameWidth  - gridWidth)  / 2;
         int gridStartY = (frameHeight - gridHeight) / 2;
 
-        int pixelX = gridStartX + x * cellSize;
-        int pixelY = gridStartY + y * cellSize;
+        pixelX = gridStartX + x * cellSize;
+        pixelY = gridStartY + y * cellSize;
 
         image.setBounds(pixelX, pixelY, cellSize, cellSize);
 
@@ -66,6 +70,16 @@ public class cell {
             public void mouseExited(MouseEvent e) {
                 hovered = false;
                 image.repaint();
+            }
+            
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (enabled) {
+                    //bildschirm.amZug.finishedPlacing = true;
+                    stein stein = new stein(bildschirm.amZug.color);
+                    bildschirm.amZug.spielfeld.place(x, y, stein);
+                    bildschirm.amZug.beendeZug();
+                }
             }
         });
     }

@@ -4,36 +4,53 @@ public class spielbrett {
     public stein[][] spielfeld;
     Scanner sc = new Scanner(System.in);
     orbitoKnopf orbito;
+    Bildschirm bildschirm;
     public spielbrett() {
         this.spielfeld = new stein[4][4];
+        //spielfeld[0][0] = new stein("s");
         this.orbito = new orbitoKnopf();
     }
     public void showBoard() {
-        System.out.println();
+        bildschirm.resetKugel();
+        for (int i = 0; i < 4; i++) {
+            
+            for (int j = 0; j < 4; j++) {
+            if (spielfeld[i][j] != null) {
+                    bildschirm.addStone(j, i, spielfeld[i][j]); 
+            }
+            //System.out.println(zeile);
+        }
+        /**System.out.println();
         System.out.println("  A B C D");
         String zeile;
+        
         for (int i = 0; i < 4; i++) {
             zeile = "" + (i+1);
             for (int j = 0; j < 4; j++) {
                 if (spielfeld[i][j] == null) {
                     zeile = zeile + " .";                    
                 } else {
-                    zeile = zeile + " " + spielfeld[i][j].color;   
+                    zeile = zeile + " " + spielfeld[i][j].color;  
+                    bildschirm.addStone(i, j, spielfeld[i][j]);
                 }
             }
             System.out.println(zeile);
         }
+        
         System.out.println();
-    }    
-    boolean place(String pos, stein stein) {
-        int[] p = parsePos(pos);
-        if (p==null) {
-            return false;
-        }
-        int row = p[0];
-        int clm = p[1];        
-        spielfeld[row][clm] = stein;
-        return true;
+        
+        **/
+        bildschirm.bildschirm.repaint();
+        bildschirm.disableOcc(spielfeld);
+    }
+    }
+    public void setBildschirm(Bildschirm bildschirm) {
+        this.bildschirm = bildschirm;
+    }
+    void place(int x, int y, stein stein) {
+        //int[] p = parsePos(pos);    
+        spielfeld[y][x] = stein;
+        //return true;
     }   
     int[] parsePos(String pos) {
         if (pos.length()!=2) {

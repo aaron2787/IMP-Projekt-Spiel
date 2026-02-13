@@ -4,8 +4,5 @@ public class stein
     public stein(String color)
     {
         this.color = color;
-    }    
-    public stein() {
-        this.color = "w";
-    }    
+    }      
 }

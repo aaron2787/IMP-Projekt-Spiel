@@ -10,7 +10,7 @@ import java.awt.event.*;
 public class Funktionen
 {
     int rows = 4, cols = 4, cellSize;
-    cell[][] cells = new cell[4][4];
+    
     public Image scaleImage(Image originalPicture, int wideImage,int hightImage){
         //Image originalPicture = new ImageIcon(pathImage).getImage();
         System.out.println(wideImage);
@@ -22,7 +22,7 @@ public class Funktionen
         Image originalPicture = new ImageIcon(pathImage).getImage();
         return originalPicture;
     }
-    public JLabel addImageToJFrame (Image imageToAdd, JFrame frameToAddTo, int xPosition, int yPosition, int imageWide, int imageHight){
+    public JLabel addImageToJFrame (Image imageToAdd, JFrame frameToAddTo, int xPosition, int yPosition, int imageWide, int imageHight, int z){
         frameToAddTo.setLayout(null);
         //System.out.println(imageWide);
         //System.out.println(imageHight);
@@ -30,7 +30,7 @@ public class Funktionen
         ImageIcon icon = new ImageIcon(imageToAdd);
         JLabel imageLabel = new JLabel(icon);
         imageLabel.setBounds(xPosition, yPosition,imageWide, imageHight);
-        frameToAddTo.add(imageLabel);
+        frameToAddTo.getLayeredPane().add(imageLabel, Integer.valueOf(z));
         frameToAddTo.repaint();
         return imageLabel;
     }
@@ -101,15 +101,6 @@ public class Funktionen
         frame.add(imageLabel);
         frame.repaint();
     }
-    public void createGrid(JFrame frame, int cellSize){
-        frame.setLayout(null);
-        for (int y = 0; y < 4; y++) {
-            for (int x = 0; x < 4; x++) {
-                cell cell = new cell(frame, cellSize, x, y);
-                cells[x][y] = cell;
-            }
-        }
-        frame.repaint();
-    }
+    
 }
 

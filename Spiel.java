@@ -7,6 +7,7 @@ public class Spiel
     //orbitoKnopf orbito;
     Music music;
     Bildschirm bildschirm;
+    int spIdx = 1;
     public Spiel()
     {
         
@@ -17,17 +18,18 @@ public class Spiel
         spieler s1 = new spieler("Spieler 1", "w", spielfeld, this);
         //System.out.println("Hallo " + name + ", wie heißt dein Mitspieler? ");
         //name = sc.nextLine();
+        
         spieler s2 = new spieler("Spieler 2", "s",spielfeld, this);
         this.spieler = new spieler[] {s1, s2};
         this.bildschirm = new Bildschirm(spieler);
-        spielLoop();       
+        spielfeld.setBildschirm(this.bildschirm);
+        naechsterSpieler();       
     }
-    private void spielLoop() {
-        int spIdx = 0;
-        while(spieler[0].steinAnzahl > 0 && spieler[1].steinAnzahl > 0) {
+    public void naechsterSpieler() {
+        spIdx = (spIdx+1)% 2;
+        if(spieler[0].steinAnzahl > 0 && spieler[1].steinAnzahl > 0) {
             spieler[spIdx].zug();
-            spielfeld.showBoard();
-            spIdx = (spIdx+1) % 2;
+            spielfeld.showBoard();            
             String[] winC = checkWin();
             //spieler winner = null;
             if (winC[0] != null) {
@@ -38,11 +40,11 @@ public class Spiel
                 }   
                 return;
             }
-        }
-        for (int i=0; i < 5; i++) {
-            spielfeld.orbito.drehen(spielfeld.spielfeld);
-            String[] winC = checkWin();
-            spieler winner = null;
+        } else {
+            for (int i=0; i < 5; i++) {
+                spielfeld.orbito.drehen(spielfeld.spielfeld);
+                String[] winC = checkWin();
+                spieler winner = null;
             if (winC[0] != null) {
                 if (winC[1] != null) {
                     end("beide");
@@ -51,9 +53,10 @@ public class Spiel
                 }  
                 return;
             }
+            }
+            end(null);
+            return;
         }
-        end(null);
-        return;
     }   
     private void end(String winner) {
         if (winner == null) {
@@ -68,8 +71,8 @@ public class Spiel
                 }
             }              
             
-    }
-    while(true) {
+        }
+        while(true) {
             System.out.println("Schreibe 'nochmal' um erneut zu spielen!");
             String in = sc.nextLine();
             if (in.equals("nochmal")) {

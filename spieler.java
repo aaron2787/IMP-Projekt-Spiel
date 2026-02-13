@@ -13,6 +13,7 @@ public class spieler
     String color;
     spielbrett spielfeld;
     Scanner sc = new Scanner(System.in);
+    boolean finishedPlacing;
     /**
      * Konstruktor für Objekte der Klasse spieler
      */
@@ -25,39 +26,40 @@ public class spieler
         this.color = color;
     }
     void zug() {
-        System.out.println(name + " ist am Zug.");
+        System.out.println(name + " ist am Zug."); //Ich muss noch was basteln was anzeigt wer dran ist aber ich hab gerade kb auf design
+        
         boolean moved = false;
         boolean show = true;
-        while (!moved) {
-            if (spiel.spieler[0].steinAnzahl == 8 && spiel.spieler[1].steinAnzahl == 8) {
-                moved = true;
-                break;
-            }
-            System.out.println("Möchtest du einen Stein deines Gegners bewegen? Gib seine Position ein oder schreibe 'skip'!");
-            String pos = sc.nextLine();
-            if (pos.equalsIgnoreCase("skip")) {
-                moved = true;
-                show = false;
-            } else {
-                moved = spielfeld.move(pos, color);
-            }
+        //***
+        //while (!moved) {
+        if (spiel.spieler[0].steinAnzahl == 8 && spiel.spieler[1].steinAnzahl == 8) {
+                
+        } else {
+            
         }
+            //System.out.println("Möchtest du einen Stein deines Gegners bewegen? Gib seine Position ein oder schreibe 'skip'!");
+            //String pos = sc.nextLine();
+            //if (pos.equalsIgnoreCase("skip")) {
+                //moved = true;
+                //show = false;
+            //} else {
+                //moved = spielfeld.move(pos, color);
+            //}
+        //}
+        //*/
         if (show) {
-            spielfeld.showBoard();
+            //spielfeld.showBoard();
         }
-        boolean placed = false;
-        while (!placed) {
-            System.out.println("Wohin möchtest du deinen Stein platzieren?");
-            String pos = sc.nextLine();
-            stein stein = new stein(color);
-            placed = spielfeld.place(pos, stein);
-            
-            //stein stein = new stein();
-            
-        }
+        finishedPlacing=false;
+        spiel.bildschirm.startPlacing(this);   
+        
+    }
+    
+    public void beendeZug() {
         this.steinAnzahl--;
         spielfeld.showBoard();
-        System.out.println("Gedrehtes Spielfeld:");
-        spielfeld.spielfeld = spielfeld.orbito.drehen(spielfeld.spielfeld);
+        spiel.bildschirm.showOrbitoKnopf();
+        //System.out.println("Gedrehtes Spielfeld:");
+        //
     }
 }
