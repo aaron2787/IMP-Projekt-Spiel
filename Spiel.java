@@ -25,14 +25,30 @@ public class Spiel
         spielfeld.setBildschirm(this.bildschirm);
         naechsterSpieler();       
     }
+    void reset() {
+        bildschirm.bildschirm.dispose();
+        spIdx = 1;
+        this.music = new Music();
+        this. spielfeld = new spielbrett();
+        //System.out.println("Spiel gestartet. Wie heißt Spieler 1? ");
+        //String name = sc.nextLine();
+        spieler s1 = new spieler("Spieler 1", "w", spielfeld, this);
+        //System.out.println("Hallo " + name + ", wie heißt dein Mitspieler? ");
+        //name = sc.nextLine();
+        
+        spieler s2 = new spieler("Spieler 2", "s",spielfeld, this);
+        this.spieler = new spieler[] {s1, s2};
+        this.bildschirm = new Bildschirm(spieler);
+        spielfeld.setBildschirm(this.bildschirm);
+        naechsterSpieler(); 
+    }
+    void closeGame() {
+        System.exit(0);
+    }
     public void naechsterSpieler() {
-        spIdx = (spIdx+1)% 2;
-        if(spieler[0].steinAnzahl > 0 && spieler[1].steinAnzahl > 0) {
-            spieler[spIdx].zug();
-            spielfeld.showBoard();            
-            String[] winC = checkWin();
-            //spieler winner = null;
-            if (winC[0] != null) {
+        spielfeld.showBoard();   
+        String[] winC = checkWin();
+         if (winC[0] != null) {
                 if (winC[1] != null) {
                     end("beide");
                 } else {
@@ -40,10 +56,18 @@ public class Spiel
                 }   
                 return;
             }
+        spIdx = (spIdx+1)% 2;
+        if(spieler[0].steinAnzahl > 0 && spieler[1].steinAnzahl > 0) {
+            
+            spieler[spIdx].zug();
+                     
+            
+            //spieler winner = null;
+           
         } else {
             for (int i=0; i < 5; i++) {
                 spielfeld.orbito.drehen(spielfeld.spielfeld);
-                String[] winC = checkWin();
+                winC = checkWin();
                 spieler winner = null;
             if (winC[0] != null) {
                 if (winC[1] != null) {
@@ -61,24 +85,28 @@ public class Spiel
     private void end(String winner) {
         if (winner == null) {
             System.out.println("Unentschieden!");
+            bildschirm.unentschieden();
         } else if (winner.equals("beide")) {
             System.out.println("Beide haben gleichzeitig gewonnen! Unentschieden!");
+            bildschirm.unentschieden();
         } else {
             for(spieler s: spieler) { 
                 if(s.color.equals(winner)) { 
                                
                     System.out.println(s.name + " hat gewonnen!");
+                    bildschirm.gewonnen(s.color);
                 }
             }              
             
         }
-        while(true) {
-            System.out.println("Schreibe 'nochmal' um erneut zu spielen!");
-            String in = sc.nextLine();
-            if (in.equals("nochmal")) {
-                new Spiel();
-            }
-        }
+        //while(true) {
+            //System.out.println("Schreibe 'nochmal' um erneut zu spielen!");
+            //String in = sc.nextLine();
+            //if (in.equals("nochmal")) {
+              //  new Spiel();
+            //}
+        //}
+        bildschirm.newGame();
     }
     private String[] checkWin() {
     String winners[] = new String[2];

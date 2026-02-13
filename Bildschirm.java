@@ -107,6 +107,37 @@ public class Bildschirm extends Funktionen
         }
         
         }
+        void unentschieden() {
+            weiss.showWin();
+            schwarz.showWin();
+        }
+        void gewonnen(String winnerColor) {
+            if (winnerColor.equals("s")) {
+                schwarz.showWin();
+            } else {
+                weiss.showWin();
+            }
+        }
+        void newGame() {
+            Image newGame = new ImageIcon("newGame.png").getImage();
+            Image closeGame = new ImageIcon("closeGame.png").getImage();
+            
+            JLabel newGameLabel = addImageToJFrame (newGame, bildschirm, 300, 500, 200, 50, 456787678);
+            JLabel closeGameLabel = addImageToJFrame (closeGame, bildschirm, 600, 500, 200, 50, 456787678);
+            
+            newGameLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                amZug.spiel.reset();
+            }
+        });
+            closeGameLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                amZug.spiel.closeGame();
+            }
+        });
+        }
      void addStone(int row, int clmn, stein stein) {
          Image kugel = new ImageIcon("kreis_"+stein.color+".png").getImage();
          //JLabel steinLabel = addImageToJFrame(kugel, bildschirm, 500, 500, 150, 150);

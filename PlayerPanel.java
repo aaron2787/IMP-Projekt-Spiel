@@ -5,11 +5,16 @@ public class PlayerPanel extends Funktionen
 {
     String color;
     Textfeld textfeld;
+    JFrame frame;
+    int width, height, x, y;
     public PlayerPanel(JFrame frame, String color, int screenWidth, int screenHeight, int x, int y, String name, spieler spieler) {
         this.color = color;
+        this.frame = frame;
+        this.x = x;
+        this.y = y;
         Image image = new ImageIcon("player_panel_" + color + ".png").getImage();
-        int width = (int) ((screenWidth-(screenHeight*0.9)-40.0)/2.0);
-        int height = (int) ((width/1202.0)*788.0);
+        this.width = (int) ((screenWidth-(screenHeight*0.9)-40.0)/2.0);
+        this.height = (int) ((width/1202.0)*788.0);
         //System.out.print(color + ": " + x + " " + y + " " + width + " " + height);
         JLabel panel = addImageToJFrame(image, frame, x, y, width, height, 0); 
         textfeld = new Textfeld(frame, (int) (width*0.85), (int) (height*0.73), (int) (x+(width*0.07)), (int) (y+(height*0.05)), name);
@@ -30,5 +35,10 @@ public class PlayerPanel extends Funktionen
                 
             }
         });
+    }
+    
+    public void showWin() {
+        Image pokal = new ImageIcon("pokal.png").getImage();
+        JLabel pokalLabel = addImageToJFrame (pokal, frame, x, y, 50, 50, 14714424);
     }
 }
