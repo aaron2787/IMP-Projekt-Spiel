@@ -23,19 +23,31 @@ public class cell {
         Graphics2D g2 = (Graphics2D) g.create();
 
         // transparente graue Fläche
-        if (bildschirm.modus == bildschirm.MODUS_PLACE) {
+        if (bildschirm.modus == bildschirm.MODUS_MOVE) {
+            g2.setColor(new Color(255, 255, 0, 80));
+        } //else if ((bildschirm.modus == bildschirm.MODUS_PLACE && occupied) {
+            //g2.setColor(new Color(0, 0, 150, 80));
+        //}
+        else {
             g2.setColor(new Color(150, 150, 150, 80));
-        } else {
-            g2.setColor(new Color(150, 150, 0, 80));
         }
         //g2.setColor(new Color(150, 150, 150, 80));
+        if (occupied) {
+            g2.setColor(new Color(0, 0, 255, 80));
+        }
         g2.fillRect(0, 0, getWidth(), getHeight());
 
         // undurchsichtige graue Border
-        if (bildschirm.modus == bildschirm.MODUS_PLACE) {
+        if (bildschirm.modus == bildschirm.MODUS_MOVE) {
+            g2.setColor(new Color(255, 255, 0));
+        } //else if (bildschirm.modus == bildschirm.MODUS_PLACE && occupied) {
+            //g2.setColor(new Color(0, 0, 120));
+        //}
+        else {
             g2.setColor(new Color(120, 120, 120));
-        } else {
-            g2.setColor(new Color(120, 120, 0, 80));
+        }
+        if (occupied) {
+            g2.setColor(new Color(0, 0, 255, 80));
         }
         //g2.setColor(new Color(120, 120, 120)); // voll opaque
         g2.setStroke(new BasicStroke(2));      // Border-Dicke
@@ -97,8 +109,9 @@ public class cell {
                 }
             }
             public void mouseClickedModusPlace(MouseEvent e) {
-                
+                    
                     if (bildschirm.amZug.spielfeld.spielfeld[y][x] == null) {
+                        hovered = false;
                         stein stein = new stein(bildschirm.amZug.color);
                         bildschirm.amZug.spielfeld.place(x, y, stein);
                         bildschirm.amZug.hasMoved = false;
@@ -126,6 +139,7 @@ public class cell {
                     bildschirm.modus = bildschirm.MODUS_PLACE;
                     bildschirm.amZug.spielfeld.showBoard();
                     bildschirm.startPlacing(bildschirm.amZug);
+                    hovered = false;
                     //bildschirm.amZug.finishedPlacing = true;
                     
                 

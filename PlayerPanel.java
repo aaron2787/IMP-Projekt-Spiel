@@ -6,12 +6,14 @@ public class PlayerPanel extends Funktionen
     String color;
     Textfeld textfeld;
     JFrame frame;
-    int width, height, x, y;
+    int width, height, x, y, screenWidth, screenHeight;
     public PlayerPanel(JFrame frame, String color, int screenWidth, int screenHeight, int x, int y, String name, spieler spieler) {
         this.color = color;
         this.frame = frame;
         this.x = x;
         this.y = y;
+        this.screenWidth = screenWidth;
+        this.screenHeight = screenHeight;
         Image image = new ImageIcon("player_panel_" + color + ".png").getImage();
         this.width = (int) ((screenWidth-(screenHeight*0.9)-40.0)/2.0);
         this.height = (int) ((width/1202.0)*788.0);
@@ -38,7 +40,16 @@ public class PlayerPanel extends Funktionen
     }
     
     public void showWin() {
-        Image pokal = new ImageIcon("pokal.png").getImage();
-        JLabel pokalLabel = addImageToJFrame (pokal, frame, x, y, 50, 50, 14714424);
+        Image pokal = null;
+        try {
+            pokal = new ImageIcon("pokal2.png").getImage();
+        } catch (Exception e){
+            //pokal = new ImageIcon("pokal.png").getImage();
+            System.out.println("Fehler bei getImage()");
+        }
+            
+        
+        double heightPokal = ((screenHeight-height)*0.88);
+        JLabel pokalLabel = addImageToJFrame (pokal, frame, x, (int) (y+((double)height*1.025)), (int) (heightPokal*(561.0/1318.0)), (int) heightPokal, 14714424);
     }
 }

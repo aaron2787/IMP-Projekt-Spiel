@@ -146,13 +146,13 @@ public class Bildschirm extends Funktionen
         });
         }
      void addStone(int row, int clmn, stein stein) {
-         Image kugel = new ImageIcon("kreis_"+stein.color+".png").getImage();
+         Image kugel = new ImageIcon("kugel_"+stein.color+".png").getImage();
          //JLabel steinLabel = addImageToJFrame(kugel, bildschirm, 500, 500, 150, 150);
          //
          bildschirm.setLayout(null);
         //System.out.println(imageWide);
         //System.out.println(imageHight);
-        double diam = (cellSize*0.8);
+        double diam = (cellSize*0.7);
         kugel = scaleImage(kugel, (int) diam , (int) diam);
         ImageIcon kugelIcon = new ImageIcon(kugel);
         JLabel kugelLabel = new JLabel(kugelIcon);
@@ -214,16 +214,16 @@ public void moveStein(int x, int y) {
                 }
     }
     if (x-1 >= 0) {
-        cells[x-1][y].enabled = true;
+        cells[x-1][y].enabled = !cells[x-1][y].occupied;
     }
     if (x+1 < 4) {
-        cells[x+1][y].enabled = true;
+        cells[x+1][y].enabled = !cells[x+1][y].occupied;
     }
     if (y-1 >= 0) {
-        cells[x][y-1].enabled = true;
+        cells[x][y-1].enabled = !cells[x][y-1].occupied;;
     }
     if (y+1 < 4) {
-        cells[x][y+1].enabled = true;
+        cells[x][y+1].enabled = !cells[x][y+1].occupied;;
     }
     cells[x][y].enabled = true;
     moveX = x;

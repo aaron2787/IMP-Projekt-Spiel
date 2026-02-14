@@ -39,7 +39,8 @@ public class spielbrett {
         
         System.out.println();
         
-        **/}
+        **/
+        }
         bildschirm.bildschirm.repaint();
         bildschirm.disableOcc(spielfeld);
     
