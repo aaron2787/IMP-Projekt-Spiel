@@ -57,7 +57,7 @@ public class Spiel
                 return;
             }
         spIdx = (spIdx+1)% 2;
-        if(spieler[0].steinAnzahl > 0 && spieler[1].steinAnzahl > 0) {
+        if(spieler[0].steinAnzahl > 0 || spieler[1].steinAnzahl > 0) {
             
             spieler[spIdx].zug();
                      
