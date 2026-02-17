@@ -8,6 +8,7 @@ public class Spiel
     Music music;
     Bildschirm bildschirm;
     int spIdx = 1;
+    int endEventCounter = 0;
     public Spiel()
     {
         
@@ -28,6 +29,7 @@ public class Spiel
     void reset() {
         bildschirm.bildschirm.dispose();
         spIdx = 1;
+        endEventCounter = 0;
         this.music = new Music();
         this. spielfeld = new spielbrett();
         //System.out.println("Spiel gestartet. Wie heißt Spieler 1? ");
@@ -65,24 +67,18 @@ public class Spiel
             //spieler winner = null;
            
         } else {
-            for (int i=0; i < 5; i++) {
-                spielfeld.orbito.drehen(spielfeld.spielfeld);
-                winC = checkWin();
-                spieler winner = null;
-            if (winC[0] != null) {
-                if (winC[1] != null) {
-                    end("beide");
-                } else {
-                    end(winC[0]);
-                }  
-                return;
+            if (endEventCounter < 5) {
+                bildschirm.removeOrbitoKnopf();
+                bildschirm.showOrbitoKnopf();
+                endEventCounter++;
+            } else {
+                end(null);
             }
-            }
-            end(null);
-            return;
         }
     }   
     private void end(String winner) {
+        bildschirm.removeOrbitoKnopf();
+        bildschirm.disableAll();
         if (winner == null) {
             System.out.println("Unentschieden!");
             bildschirm.unentschieden();
