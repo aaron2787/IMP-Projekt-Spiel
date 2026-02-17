@@ -21,6 +21,7 @@ public class Bildschirm extends Funktionen
     double cellSize;
     JLabel knopfLabel;
     int modus;
+    JLabel amZugIndicator;
     
     final int MODUS_MOVE = 1;
     final int MODUS_PLACE = 0;
@@ -121,9 +122,24 @@ public class Bildschirm extends Funktionen
         }
         
         }
+        void removeAmZug() {
+            if (amZug == null) {return;}
+            if (amZug.color.equals("w")) {
+                weiss.removeAmZugIndicator();
+            }else {
+                schwarz.removeAmZugIndicator();
+            }
+        }
+        void addAmZug() {
+            if (amZug.color.equals("w")) {
+                weiss.addAmZugIndicator("w");
+            }else {
+                schwarz.addAmZugIndicator("s");
+            }
+        } 
         void unentschieden() {
-            weiss.showWin();
-            schwarz.showWin();
+            weiss.showDraw("w");
+            schwarz.showDraw("s");
         }
         void gewonnen(String winnerColor) {
             if (winnerColor.equals("s")) {
@@ -196,7 +212,9 @@ public class Bildschirm extends Funktionen
     }
     public void startPlacing(spieler spieler) {
     removeOrbitoKnopf();
+    removeAmZug();
     amZug = spieler;
+    addAmZug();
     /**
     for (cell[] row : cells) {
             for (cell cell : row) {

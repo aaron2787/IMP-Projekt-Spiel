@@ -48,6 +48,7 @@ public class Spiel
         System.exit(0);
     }
     public void naechsterSpieler() {
+        bildschirm.removeAmZug();
         spielfeld.showBoard();   
         String[] winC = checkWin();
          if (winC[0] != null) {
@@ -80,16 +81,16 @@ public class Spiel
         bildschirm.removeOrbitoKnopf();
         bildschirm.disableAll();
         if (winner == null) {
-            System.out.println("Unentschieden!");
+            //System.out.println("Unentschieden!");
             bildschirm.unentschieden();
         } else if (winner.equals("beide")) {
-            System.out.println("Beide haben gleichzeitig gewonnen! Unentschieden!");
+            //System.out.println("Beide haben gleichzeitig gewonnen! Unentschieden!");
             bildschirm.unentschieden();
         } else {
             for(spieler s: spieler) { 
                 if(s.color.equals(winner)) { 
                                
-                    System.out.println(s.name + " hat gewonnen!");
+                    //System.out.println(s.name + " hat gewonnen!");
                     bildschirm.gewonnen(s.color);
                 }
             }              
