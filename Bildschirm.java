@@ -74,6 +74,16 @@ public class Bildschirm extends Funktionen
         
         
         }
+        /**
+        void addLine(String dir, int row) {
+            im
+        }
+        **/
+        Textfeld addCountdown() {
+            int TWidth = width/38; 
+            Textfeld countdown = new Textfeld(bildschirm, TWidth, TWidth, (int) (((width-TWidth)/2.0)+width*0.0035), (height-TWidth)/2, "5");
+            return countdown;
+        }
         void showOrbitoKnopf() {
             for (cell[] row : cells) {
                 for (cell cell : row) {

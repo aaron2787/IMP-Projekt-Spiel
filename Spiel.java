@@ -9,6 +9,7 @@ public class Spiel
     Bildschirm bildschirm;
     int spIdx = 1;
     int endEventCounter = 0;
+    Textfeld countdown = null;
     public Spiel()
     {
         
@@ -69,10 +70,13 @@ public class Spiel
            
         } else {
             if (endEventCounter < 5) {
+                if(endEventCounter == 0) {countdown = bildschirm.addCountdown();}
+                countdown.setText(""+(5-endEventCounter));
                 bildschirm.removeOrbitoKnopf();
                 bildschirm.showOrbitoKnopf();
                 endEventCounter++;
             } else {
+                countdown.setText("0");
                 end(null);
             }
         }
