@@ -17,7 +17,6 @@ public class Funktionen
         return imageLabel;
     }
     public JFrame startJFrame(String displayedName){
-        GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         JFrame frame = new JFrame(displayedName);
         ImageIcon icon = new ImageIcon("logo.png"); 
         frame.setIconImage(icon.getImage());
