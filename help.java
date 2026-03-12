@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.Desktop;
 import java.net.URI;
-public class help extends Funktionen {
+public class help extends GUIUtilities {
     JLabel image;
     public help(int x, int y, int width, JFrame frame) {
         Image image_ = new ImageIcon("help.png").getImage();

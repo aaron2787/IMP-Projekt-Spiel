@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-public class Funktionen
+public class GUIUtilities
 {   
     public Image scaleImage(Image originalPicture, int wideImage,int hightImage){
         Image scaledPicture = originalPicture.getScaledInstance(wideImage, hightImage, Image.SCALE_SMOOTH);

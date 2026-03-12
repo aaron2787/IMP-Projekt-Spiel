@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-public class PlayerPanel extends Funktionen {
+public class PlayerPanel extends GUIUtilities {
     private String color;
     private Textfeld textfeld;
     private JFrame frame;

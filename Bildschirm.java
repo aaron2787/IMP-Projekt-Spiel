@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-public class Bildschirm extends Funktionen {
+public class Bildschirm extends GUIUtilities {
     public JFrame bildschirm;
     private int width;
     private int height;
