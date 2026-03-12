@@ -1,28 +1,5 @@
-
-/**
- * Beschreiben Sie hier die Klasse orbitoKnopf.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
-public class orbitoKnopf
-{
-    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
-
-    /**
-     * Konstruktor für Objekte der Klasse orbitoKnopf
-     */
-    public orbitoKnopf()
-    {    
-        
-    }
-
-    /**
-     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
-     * 
-     * @param  y    ein Beispielparameter für eine Methode
-     * @return        die Summe aus x und y
-     */
+public class orbitoKnopf {
+    public orbitoKnopf() {}
     public stein[][] drehen(stein[][] spielfeld) {
         stein f = spielfeld[0][0];
         for (int i = 0; i < 3; i++) {
