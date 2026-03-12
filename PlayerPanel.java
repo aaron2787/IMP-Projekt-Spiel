@@ -2,11 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 public class PlayerPanel extends Funktionen {
-    String color;
-    Textfeld textfeld;
-    JFrame frame;
-    int width, height, x, y, screenWidth, screenHeight;
-    JLabel amZugIndicator;
+    private String color;
+    private Textfeld textfeld;
+    private JFrame frame;
+    private int width, height, x, y, screenWidth, screenHeight;
+    private JLabel amZugIndicator;
     public PlayerPanel(JFrame frame, String color, int screenWidth, int screenHeight, int x, int y, String name, spieler spieler) {
         this.color = color;
         this.frame = frame;
@@ -32,7 +32,7 @@ public class PlayerPanel extends Funktionen {
             }
         });
     }
-    void addAmZugIndicator(String color) {
+    public void addAmZugIndicator(String color) {
         Image zug = new ImageIcon("amZug_" + color + ".png").getImage();
         double zugWidth = width / 4.0;
         double zugHeight = (zugWidth * (167.0 / 207.0));
@@ -43,7 +43,7 @@ public class PlayerPanel extends Funktionen {
         amZugIndicator = addImageToJFrame(zug, frame, (int)((x + width - (zugWidth / 2.0)) - m), 46, (int) zugWidth, (int) zugHeight, 4567893);
         frame.repaint();
     }
-    void removeAmZugIndicator() {
+    public void removeAmZugIndicator() {
         if (amZugIndicator != null) {
             frame.getLayeredPane().remove(amZugIndicator);
             amZugIndicator = null;

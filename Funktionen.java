@@ -1,8 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 public class Funktionen
-{
-    public int rows = 4, cols = 4, cellSize;    
+{   
     public Image scaleImage(Image originalPicture, int wideImage,int hightImage){
         Image scaledPicture = originalPicture.getScaledInstance(wideImage, hightImage, Image.SCALE_SMOOTH);
         return scaledPicture;

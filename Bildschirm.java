@@ -3,18 +3,18 @@ import java.awt.*;
 import java.awt.event.*;
 public class Bildschirm extends Funktionen {
     public JFrame bildschirm;
-    public int width;
-    public int height;
-    public PlayerPanel weiss, schwarz;
-    public cell[][] cells = new cell[4][4];
+    private int width;
+    private int height;
+    private PlayerPanel weiss, schwarz;
+    private cell[][] cells = new cell[4][4];
     public spieler amZug;
-    public JLabel[] kugelLabelStore = new JLabel[16];
-    public int kugelIdx;
-    public double cellSize;
-    public JLabel knopfLabel;
+    private JLabel[] kugelLabelStore = new JLabel[16];
+    private int kugelIdx;
+    private double cellSize;
+    private JLabel knopfLabel;
     public int modus;
-    public JLabel amZugIndicator;
-    public help help;
+    private JLabel amZugIndicator;
+    private help help;
     public final int MODUS_MOVE = 1;
     public final int MODUS_PLACE = 0;
     public int moveX, moveY;
@@ -82,7 +82,7 @@ public class Bildschirm extends Funktionen {
             schwarz.removeAmZugIndicator();
         }
     }
-    void addAmZugIndicator() {
+    private void addAmZugIndicator() {
         if (amZug.color.equals("w")) {
             weiss.addAmZugIndicator("w");
         } else {
@@ -185,7 +185,7 @@ public class Bildschirm extends Funktionen {
         moveX = x;
         moveY = y;
     }
-    public void createGrid(JFrame frame, int cellSize) {
+    private void createGrid(JFrame frame, int cellSize) {
         frame.setLayout(null);
         for (int y = 0; y < 4; y++) {
             for (int x = 0; x < 4; x++) {

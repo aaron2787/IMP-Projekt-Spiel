@@ -4,7 +4,6 @@ public class spieler {
     public Spiel spiel;
     public String color;
     public spielbrett spielfeld;
-    public boolean finishedPlacing;
     public boolean hasMoved = false;
     public spieler(String name, String color, spielbrett spielfeld, Spiel spiel) {
         this.name = name;
@@ -14,7 +13,6 @@ public class spieler {
         this.color = color;
     }
     public void startZug() {
-        finishedPlacing = false;
         spiel.bildschirm.startPlacing(this);
     }
     public void beendeZug() {

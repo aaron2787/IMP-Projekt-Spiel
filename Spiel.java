@@ -1,11 +1,11 @@
 public class Spiel {
-    public spielbrett spielfeld;
-    public spieler[] spieler;
-    public Music music;
+    private spielbrett spielfeld;
+    private spieler[] spieler;
+    private Music music;
     public Bildschirm bildschirm;
-    public int spIdx = 1;
-    public int endEventCounter = 0;
-    public Textfeld countdown = null;
+    private int spIdx = 1;
+    private int endEventCounter = 0;
+    private Textfeld countdown = null;
     public Spiel() {
         this.music = new Music();
         this.spielfeld = new spielbrett();

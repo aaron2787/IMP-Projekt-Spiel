@@ -1,8 +1,7 @@
 public class spielbrett {
-    public spieler[] spieler;
     public stein[][] spielfeld;
     public orbitoKnopf orbito;
-    public Bildschirm bildschirm;
+    private Bildschirm bildschirm;
     public spielbrett() {
         this.spielfeld = new stein[4][4];
         this.orbito = new orbitoKnopf();
@@ -22,7 +21,7 @@ public class spielbrett {
     public void setBildschirm(Bildschirm bildschirm) {
         this.bildschirm = bildschirm;
     }
-    void place(int x, int y, stein stein) {
+    public void place(int x, int y, stein stein) {
         spielfeld[y][x] = stein;
     }
     public void move(int x, int y, int moveX, int moveY) {
