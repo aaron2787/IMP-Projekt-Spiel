@@ -1,6 +1,9 @@
-This is a school project for our "IMP-Class". It was created using blueJ. The project is a game, which we weren't allowed to make in VS-Code or greenfoot, so we HAD TO USE FUCKING BLUEJ. I don't know what the game is about
+# **GitHub-Repo zu unserem 2. IMP-Projekt des Schuljahres 2025/26.**
 
-To use it, dowload the zip-file, by clicking on "code" (top left corner) and selecting "dowload zip-file"
-Then, import the zip-file in blueJ. To start the game --- [...]
+Dies ist unsere Version des Brettspiels „Orbito“, welches wir im Rahmen dieses Projektes als Computerspiel umsetzten. Das geschah unter Verwendung von BlueJ. 
 
-Authors: Aaron, Leo, Darragh, Paul
+Die Start-Klasse des Spiels ist „Spiel“. 
+
+Für Hilfe bezüglich der Spielregeln können sie den „Hilfe“-Knopf innerhalb des Spiels drücken, oder diese Webseite besuchen: https://paulosaurus6.github.io/OrbitoWebsite/
+
+## **Viel Spaß beim Spielen!**
