@@ -4,6 +4,6 @@ Dies ist unsere Version des Brettspiels „Orbito“, welches wir im Rahmen dies
 
 Die Start-Klasse des Spiels ist „Spiel“. 
 
-Für Hilfe bezüglich der Spielregeln können sie den „Hilfe“-Knopf innerhalb des Spiels drücken, oder diese Webseite besuchen: https://paulosaurus6.github.io/OrbitoWebsite/
+Für Hilfe bezüglich der Spielregeln können Sie den „Hilfe“-Knopf innerhalb des Spiels drücken, oder diese Webseite besuchen: https://paulosaurus6.github.io/OrbitoWebsite/
 
 ## **Viel Spaß beim Spielen!**
