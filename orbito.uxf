@@ -1,11 +1,141 @@
-<diagram program="umletino" version="15.1"><zoom_level>18</zoom_level><element><id>UMLClass</id><coordinates><x>18</x><y>18</y><w>378</w><h>342</h></coordinates><panel_attributes>**Spiel**
+<diagram program="umletino" version="15.1"><zoom_level>5</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>1045</x><y>620</y><w>135</w><h>80</h></coordinates><panel_attributes>**Spielbrett**
 --
--id: Long
-_-ClassAttribute: Long_
++ spielfeld : Stein[][]
++ orbito : OrbitoKnopf 
+– bildschirm : Bildschirm
 --
-#Operation(i: int): int
-/+AbstractOperation()/
++ Spielbrett()
++ showBoard() : void
++ setBildschirm(Bildschirm bildschirm) : void
++ place(int x, int y, Stein stein) : void
++ move(int x, int y, int moveX, int moveY) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>600</x><y>695</y><w>190</w><h>80</h></coordinates><panel_attributes>**Cell**
 --
-Responsibilities
--- Resp1
-*-- Resp2*</panel_attributes><additional_attributes></additional_attributes></element></diagram>
+- image : JLabel
++ enabled : boolean
++ occupied : boolean
+- hovered : boolean
+- bildschirm : Bildschirm
++ pixelX : int
++ pixelY : int
+--
++ Cell(Bildschirm bildschirm, JFrame frame, int cellSize, int x, int y)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1220</x><y>550</y><w>110</w><h>35</h></coordinates><panel_attributes>**OrbitoKnopf**
+--
+--
++ OrbtioKnopf()
++ drehen(Stein[][] spielfeld) : Stein[][]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>355</x><y>230</y><w>395</w><h>40</h></coordinates><panel_attributes>**GUIUtilities**
+--
+--
++ scaleImage(Image originalPicture, int wideImage,int hightImage) : Image
++ addImageToJFrame (Image imageToAdd, JFrame frameToAddTo, int xPosition, int yPosition, int imageWide, int imageHight, int z) : JFrame
++ startJFrame(String displayedName) : JFrame </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>915</x><y>310</y><w>40</w><h>25</h></coordinates><panel_attributes>**Music**
+--
+--
++ Music()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>420</x><y>720</y><w>170</w><h>40</h></coordinates><panel_attributes>**Textfeld**
+--
++ text : String
+--
++ Textfeld(JFrame frame, int w, int h, int x, int y, String text)
++ setText(string t) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1220</x><y>730</y><w>110</w><h>30</h></coordinates><panel_attributes>**Stein**
+--
++ color : String
+--
++ Stein(String color)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1180</x><y>415</y><w>190</w><h>85</h></coordinates><panel_attributes>**Spieler**
+--
++ name : String
++ steinAnzahl : int
++ spiel : Spiel
++ color : String
++ spielfeld : Spielbrett
++ hasMoved : boolean
+--
++ Spieler(String name, String color, Spielbrett spielfeld, Spiel spiel)
++ startZug() : void
++ beendeZug() : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>625</x><y>370</y><w>140</w><h>275</h></coordinates><panel_attributes>**Bildschirm**
+--
++ bildschirm : JFrame
+- width : int
+- height : int
+- weiss : PlayerPanel
+- schwarz : PlayerPanel
+- cells : Cell[][]
++ amZug : Spieler
+- kugelLabelStore : JLabel[]
+- kugelIdx : int
+- cellSize : double
+- knopfLabel : JLabel
++ modus : int
+- amZugIndicator : JLabel
+- help : Help
++ MODUS_MOVE : int
++ MODUS_PLACE : int
++ moveX : int
++ moveY : int
+--
++ Bildschirm(Spieler[] spieler)
++ addOrbitoCountdown() : Textfeld
++ showOrbitoKnopf() : void
++ disableAllCells() : void
++ removeOrbitoKnopf() : void
++ removeAmZugIndicator() : void
+- addAmZugIndicator() : void 
++ unentschieden() : void 
++ gewonnen(String winnerColor) : void 
++ addNewGameButton() : void 
++ addStone(int row, int clmn, Stein stein) : void 
++ disableOccupiedCells(Stein[][] spielfeld) : void 
++ clearSpielfeld() : void 
++ startPlacing(Spieler spieler) : void 
++ startModusMove(int x, int y) : void
+- createGrid(JFrame frame, int cellSize) : void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>310</x><y>580</y><w>110</w><h>30</h></coordinates><panel_attributes>**Help**
+--
+image : JLabel
+--
++ Help()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>940</x><y>455</y><w>100</w><h>115</h></coordinates><panel_attributes>**Spiel**
+--
+- spielfeld : Spielbrett
+- spieler : Spieler[]
+- music : Music
++ bildschirm : Bildschirm
+- spIdx : int
+- endEventCounter : int
+- countdown : Textfeld
+--
++ Spiel()
++ reset() : void
++ closeGame() : void
++ naechsterSpieler() : void
+- endGame(String winner) : void
+- checkWin() : String[]</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>130</x><y>370</y><w>330</w><h>130</h></coordinates><panel_attributes>**PlayerPanel**
+--
+- color : String
+- textfeld : Textfeld
+- frame : JFrame
+- width : int
+- height : int
+- x : int
+- y : int
+- screenWidth : int
+- screenHeight : int
+- amZugIndicator : JLabel
+--
++ PlayerPanel(JFrame frame, String color, int screenWidth, int screenHeight, int x, int y, String name, Spieler spieler)
++ addAmZugIndicator(String color) : void
++ removeAmZugIndicator() : void
++ showDraw(String color) : void
++ showWin() : void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>455</x><y>265</y><w>110</w><h>195</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>200;10;10;370</additional_attributes></element><element><id>Relation</id><coordinates><x>550</x><y>265</y><w>85</w><h>260</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;150;500</additional_attributes></element><element><id>Relation</id><coordinates><x>415</x><y>265</y><w>155</w><h>340</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>280;10;290;660;10;660</additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>510</y><w>275</w><h>80</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;140;310;10;530;10</additional_attributes></element><element><id>Relation</id><coordinates><x>500</x><y>510</y><w>135</w><h>220</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;420;250;10</additional_attributes></element><element><id>Relation</id><coordinates><x>760</x><y>515</y><w>190</w><h>15</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;360;10</additional_attributes></element><element><id>Relation</id><coordinates><x>760</x><y>515</y><w>190</w><h>15</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>360;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>925</x><y>275</y><w>165</w><h>255</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>15;65;10;10;310;10;310;490;230;490</additional_attributes></element><element><id>Relation</id><coordinates><x>690</x><y>640</y><w>15</w><h>65</h></coordinates><panel_attributes>lt=&lt;-&gt;
+</panel_attributes><additional_attributes>10;110;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>785</x><y>695</y><w>340</w><h>55</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes>660;10;660;90;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>1175</x><y>580</y><w>115</w><h>90</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes>210;10;210;160;10;160</additional_attributes></element><element><id>Relation</id><coordinates><x>1175</x><y>655</y><w>110</w><h>85</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes>200;150;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1270</x><y>565</y><w>100</w><h>175</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes>10;330;180;150;180;10;120;10</additional_attributes></element><element><id>UMLUseCase</id><coordinates><x>895</x><y>245</y><w>580</w><h>580</h></coordinates><panel_attributes>
+bg=#90D5FF</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLUseCase</id><coordinates><x>55</x><y>80</y><w>840</w><h>840</h></coordinates><panel_attributes>
+bg=#32CD32</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>455</x><y>445</y><w>60</w><h>285</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>100;550;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1105</x><y>265</y><w>165</w><h>75</h></coordinates><panel_attributes>**Logik**
+
+fontsize=100</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>365</x><y>110</y><w>205</w><h>105</h></coordinates><panel_attributes>**GUI**
+
+fontsize=150</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1035</x><y>515</y><w>85</w><h>115</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes>150;210;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1105</x><y>455</y><w>85</w><h>175</h></coordinates><panel_attributes>lt=&lt;-
+</panel_attributes><additional_attributes>10;330;150;10</additional_attributes></element><element><id>Relation</id><coordinates><x>980</x><y>375</y><w>305</w><h>90</h></coordinates><panel_attributes>lt=&lt;-&gt;
+</panel_attributes><additional_attributes>10;160;10;20;590;20;590;80</additional_attributes></element><element><id>Relation</id><coordinates><x>105</x><y>340</y><w>1240</w><h>125</h></coordinates><panel_attributes>lt=-&gt;</panel_attributes><additional_attributes>50;230;10;230;10;10;2460;30;2340;150</additional_attributes></element></diagram>
