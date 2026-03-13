@@ -3,7 +3,7 @@ import java.io.File;
 public class Music {
     public Music() {
         try {
-            File song = new File("orbito-theme-1(wav).wav");
+            File song = new File("Orbito_Theme.wav");
             AudioInputStream stream = AudioSystem.getAudioInputStream(song);
             Clip play = AudioSystem.getClip();
             play.open(stream);
